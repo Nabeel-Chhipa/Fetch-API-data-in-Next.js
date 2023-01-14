@@ -1,9 +1,19 @@
-import React from 'react'
+import { use } from "react";
 
-const page = () => {
-  return (
-    <div>Posts Page</div>
-  )
+async function getPosts() {
+  let posts = await fetch("https://dummyjson.com/posts?limit=6");
+  return posts.json();
 }
 
-export default page
+const page = () => {
+  let { posts } = use(getPosts());
+  return (
+    <div>
+      <ul>
+        {posts?.map((post) => <li key={post.id}>{post.title}</li> )}
+      </ul>
+    </div>
+  );
+};
+
+export default page;
