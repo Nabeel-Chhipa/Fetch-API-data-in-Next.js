@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { use } from "react";
 
 async function getPosts() {
@@ -10,7 +11,7 @@ const page = () => {
   return (
     <div>
       <ul>
-        {posts?.map((post) => <li key={post.id}>{post.title}</li> )}
+        {posts?.map((post) => <li key={post.id}><Link href={`/posts/${post.id}`}>{post.title}</Link></li> )}
       </ul>
     </div>
   );
